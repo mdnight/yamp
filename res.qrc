@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="magnifier">ui/icons/magnifier.png</file>
+        <file alias="add">ui/icons/add.png</file>
+        <file alias="like">ui/icons/like.png</file>
+        <file alias="liked">ui/icons/liked.png</file>
+        <file alias="my_music">ui/icons/my_music.png</file>
+        <file alias="next">ui/icons/next.png</file>
+        <file alias="pause">ui/icons/pause.png</file>
+        <file>ui/icons/play_pushed.png</file>
+        <file alias="play">ui/icons/play.png</file>
+        <file alias="playlist">ui/icons/playlist.png</file>
+        <file alias="prev">ui/icons/prev.png</file>
+        <file alias="repeat">ui/icons/repeat.png</file>
+        <file alias="shuffle">ui/icons/shuffle.png</file>
+        <file>ui/icons/star.png</file>
+        <file alias="volume_high">ui/icons/volume_high.png</file>
+        <file alias="volume_low">ui/icons/volume_low.png</file>
+        <file alias="volume_mute">ui/icons/volume_mute.png</file>
+    </qresource>
+    <qresource prefix="/css">
+        <file alias="styles">ui/css/styles.css</file>
+    </qresource>
+</RCC>
