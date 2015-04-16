@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+class VolumeButton;
+
 namespace Ui {
   class MainWindow;
 }

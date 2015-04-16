@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFile>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -35,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->volButton->setIcon(QIcon(":/icons/volume_high"));
   ui->volButton->setIconSize(ui->volButton->size());
   ui->volButton->setMaximumWidth(ui->volButton->height());
+//  QObject::connect(ui->volButton, &QToolButton::clicked)
 
   ui->playlistButton->setIcon(QIcon(":/icons/playlist"));
   ui->playlistButton->setIconSize(ui->playlistButton->size());
@@ -43,6 +45,8 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->recomButton->setText(tr("Рекомендации"));
   ui->genreButton->setText(tr("Жанры"));
   ui->assignButton->setText(tr("Подборки"));
+
+
 
   QFile file(":/css/styles");
   file.open(QFile::ReadOnly);
@@ -55,4 +59,5 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
   delete ui;
+  delete icon;
 }

@@ -15,9 +15,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    volumebutton.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    volumebutton.h
 
 FORMS    += mainwindow.ui
 
