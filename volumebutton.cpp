@@ -32,12 +32,6 @@ VolumeButton::VolumeButton(QWidget *parent) :
     setMenu(menu);
 }
 
-//VolumeButton::~VolumeButton()
-//{
-//  delete slider;
-//  delete label;
-//  delete menu;
-//}
 
 void VolumeButton::increaseVolume()
 {

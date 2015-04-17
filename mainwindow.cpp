@@ -32,7 +32,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
   searchLine->addAction(QIcon(":/icons/magnifier"), QLineEdit::ActionPosition::TrailingPosition);
   searchLine->setPlaceholderText(tr("Трек, альбом, исполнитель"));
-//  connect(action, &QAction::triggered);
 
   ppButton->setIcon(QIcon(":/icons/play"));
   ppButton->setIconSize(ppButton->size());
@@ -58,6 +57,8 @@ MainWindow::MainWindow(QWidget *parent) :
   volButton->setIconSize(volButton->size());
   volButton->setMaximumWidth(volButton->height());
 //  QObject::connect(ui->volButton, &QToolButton::clicked)
+
+  playSlider->setRange(0,100);
 
   playlistButton->setIcon(QIcon(":/icons/playlist"));
   playlistButton->setIconSize(playlistButton->size());
@@ -89,12 +90,10 @@ MainWindow::MainWindow(QWidget *parent) :
   subWidgetLayout->addWidget(volButton);
   ui->widget->setLayout(widgetLayout);
 
-
   QFile file(":/css/styles");
   file.open(QFile::ReadOnly);
   QString StyleSheet = QLatin1String(file.readAll());
   this->setStyleSheet(StyleSheet);
-
 }
 
 MainWindow::~MainWindow()
