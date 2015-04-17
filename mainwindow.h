@@ -2,6 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPushButton>
+#include <QSlider>
+#include <QLineEdit>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QLabel>
 
 class VolumeButton;
 
@@ -19,8 +25,16 @@ public:
 
 private:
   Ui::MainWindow *ui;
-  QAction *action;
-  QIcon *icon;
+  VolumeButton *volButton;
+  QPushButton *prevButton, *ppButton, *playlistButton, *nextButton,
+        *likeButton, *addButton, *assignButton, *genreButton, *recomButton;
+  QLineEdit *searchLine;
+  QLabel *trackLabel, *artistLabel;
+  QSlider *playSlider;
+  QVBoxLayout *widgetLayout, *artistTrackLayout;
+  QHBoxLayout *subWidgetLayout;
+
+
 };
 
 #endif // MAINWINDOW_H

@@ -1,51 +1,93 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "volumebutton.h"
 #include <QFile>
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
-  QMainWindow(parent),
+  QMainWindow(parent), volButton(0),
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
   this->setWindowTitle(tr("Yamp"));
-  ui->frame->setFixedHeight(80);
-  action = ui->searchLine->addAction(QIcon(":/icons/magnifier"), QLineEdit::ActionPosition::TrailingPosition);
+  ui->widget->setFixedHeight(80);
+
+  searchLine = new QLineEdit(this);
+  prevButton = new QPushButton(this);
+  playlistButton = new QPushButton(this);
+  ppButton = new QPushButton(this);
+  nextButton = new QPushButton(this);
+  likeButton = new QPushButton(this);
+  addButton = new QPushButton(this);
+  assignButton = new QPushButton(this);
+  genreButton = new QPushButton(this);
+  recomButton = new QPushButton(this);
+  trackLabel = new QLabel(tr("Трек"), this);
+  artistLabel = new QLabel(tr("Исполнитель"), this);
+  playSlider = new QSlider(Qt::Horizontal, this);
+  widgetLayout = new QVBoxLayout(this);
+  artistTrackLayout = new QVBoxLayout(this);
+  subWidgetLayout = new QHBoxLayout(this);
+  volButton = new VolumeButton(this);
+
+  searchLine->addAction(QIcon(":/icons/magnifier"), QLineEdit::ActionPosition::TrailingPosition);
+  searchLine->setPlaceholderText(tr("Трек, альбом, исполнитель"));
 //  connect(action, &QAction::triggered);
 
-  ui->ppButton->setIcon(QIcon(":/icons/play"));
-  ui->ppButton->setIconSize(ui->ppButton->size());
-  ui->ppButton->setMaximumWidth(ui->ppButton->height());
+  ppButton->setIcon(QIcon(":/icons/play"));
+  ppButton->setIconSize(ppButton->size());
+  ppButton->setMaximumWidth(ppButton->height());
 
-  ui->prevButton->setIcon(QIcon(":/icons/prev"));
-  ui->prevButton->setIconSize(ui->prevButton->size());
-  ui->prevButton->setMaximumWidth(ui->prevButton->height());
+  prevButton->setIcon(QIcon(":/icons/prev"));
+  prevButton->setIconSize(prevButton->size());
+  prevButton->setMaximumWidth(prevButton->height());
 
-  ui->nextButton->setIcon(QIcon(":/icons/next"));
-  ui->nextButton->setIconSize(ui->nextButton->size());
-  ui->nextButton->setMaximumWidth(ui->nextButton->height());
+  nextButton->setIcon(QIcon(":/icons/next"));
+  nextButton->setIconSize(nextButton->size());
+  nextButton->setMaximumWidth(nextButton->height());
 
-  ui->likeButton->setIcon(QIcon(":/icons/like"));
-  ui->likeButton->setIconSize(ui->nextButton->size());
-  ui->likeButton->setMaximumWidth(ui->likeButton->height());
+  likeButton->setIcon(QIcon(":/icons/like"));
+  likeButton->setIconSize(nextButton->size());
+  likeButton->setMaximumWidth(likeButton->height());
 
-  ui->addButton->setIcon(QIcon(":/icons/add"));
-  ui->addButton->setIconSize(ui->addButton->size());
-  ui->addButton->setMaximumWidth(ui->nextButton->height());
+  addButton->setIcon(QIcon(":/icons/add"));
+  addButton->setIconSize(addButton->size());
+  addButton->setMaximumWidth(nextButton->height());
 
-  ui->volButton->setIcon(QIcon(":/icons/volume_high"));
-  ui->volButton->setIconSize(ui->volButton->size());
-  ui->volButton->setMaximumWidth(ui->volButton->height());
+  volButton->setIcon(QIcon(":/icons/volume_high"));
+  volButton->setIconSize(volButton->size());
+  volButton->setMaximumWidth(volButton->height());
 //  QObject::connect(ui->volButton, &QToolButton::clicked)
 
-  ui->playlistButton->setIcon(QIcon(":/icons/playlist"));
-  ui->playlistButton->setIconSize(ui->playlistButton->size());
-  ui->playlistButton->setMaximumWidth(ui->playlistButton->height());
+  playlistButton->setIcon(QIcon(":/icons/playlist"));
+  playlistButton->setIconSize(playlistButton->size());
+  playlistButton->setMaximumWidth(playlistButton->height());
 
-  ui->recomButton->setText(tr("Рекомендации"));
-  ui->genreButton->setText(tr("Жанры"));
-  ui->assignButton->setText(tr("Подборки"));
+  recomButton->setText(tr("Рекомендации"));
+  genreButton->setText(tr("Жанры"));
+  assignButton->setText(tr("Подборки"));
 
+  ui->topLayout->addWidget(searchLine);
+  ui->topLayout->addWidget(recomButton);
+  ui->topLayout->addWidget(genreButton);
+  ui->topLayout->addWidget(assignButton);
+
+  widgetLayout->addWidget(playSlider);
+  widgetLayout->addLayout(subWidgetLayout);
+
+  artistTrackLayout->addWidget(trackLabel);
+  artistTrackLayout->addWidget(artistLabel);
+
+  subWidgetLayout->addWidget(prevButton);
+  subWidgetLayout->addWidget(ppButton);
+  subWidgetLayout->addWidget(nextButton);
+  subWidgetLayout->addWidget(playlistButton);
+  subWidgetLayout->addLayout(artistTrackLayout);
+  subWidgetLayout->addStretch();
+  subWidgetLayout->addWidget(likeButton);
+  subWidgetLayout->addWidget(addButton);
+  subWidgetLayout->addWidget(volButton);
+  ui->widget->setLayout(widgetLayout);
 
 
   QFile file(":/css/styles");
@@ -53,11 +95,9 @@ MainWindow::MainWindow(QWidget *parent) :
   QString StyleSheet = QLatin1String(file.readAll());
   this->setStyleSheet(StyleSheet);
 
-  ui->searchLine->setPlaceholderText(tr("Трек, альбом, исполнитель"));
 }
 
 MainWindow::~MainWindow()
 {
   delete ui;
-  delete icon;
 }
