@@ -8,6 +8,10 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QKeyEvent>
+
+#include "playlistwidget.h"
+#include "yandexmusicapi.h"
 
 class VolumeButton;
 
@@ -23,6 +27,12 @@ public:
   explicit MainWindow(QWidget *parent = 0);
   ~MainWindow();
 
+public slots:
+  void onfillArtistList();
+
+protected:
+  void keyPressEvent(QKeyEvent *event);
+
 private:
   Ui::MainWindow *ui;
   VolumeButton *volButton;
@@ -33,8 +43,7 @@ private:
   QSlider *playSlider;
   QVBoxLayout *widgetLayout, *artistTrackLayout;
   QHBoxLayout *subWidgetLayout;
-
-
+  PlaylistWidget *playlistWidget;
 };
 
 #endif // MAINWINDOW_H

@@ -19,7 +19,7 @@
      <layout class="QHBoxLayout" name="topLayout"/>
     </item>
     <item>
-     <widget class="QListWidget" name="listWidget"/>
+     <layout class="QGridLayout" name="gridLayout"/>
     </item>
     <item>
      <widget class="QWidget" name="widget" native="true">

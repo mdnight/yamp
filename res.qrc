@@ -17,6 +17,8 @@
         <file alias="volume_high">ui/icons/volume_high.png</file>
         <file alias="volume_low">ui/icons/volume_low.png</file>
         <file alias="volume_mute">ui/icons/volume_mute.png</file>
+        <file alias="up">ui/icons/up.png</file>
+        <file alias="blank">ui/icons/index.png</file>
     </qresource>
     <qresource prefix="/css">
         <file alias="styles">ui/css/styles.css</file>

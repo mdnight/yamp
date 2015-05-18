@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 CONFIG += c++11
 
@@ -16,10 +16,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    volumebutton.cpp
+    volumebutton.cpp \
+    ui/datawidget.cpp \
+    playlistwidget.cpp
 
 HEADERS  += mainwindow.h \
-    volumebutton.h
+    volumebutton.h \
+    ui/datawidget.h \
+    playlistwidget.h
 
 FORMS    += mainwindow.ui
 
@@ -28,3 +32,11 @@ RESOURCES += \
 
 DISTFILES += \
     ui/css/styles.css
+
+
+unix:!macx: LIBS += -L$$PWD/libs/ -lcpp-yamusic
+
+INCLUDEPATH += $$PWD/libs
+DEPENDPATH += $$PWD/libs
+
+unix:!macx: PRE_TARGETDEPS += $$PWD/libs/libcpp-yamusic.a

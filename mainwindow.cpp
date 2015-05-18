@@ -3,6 +3,7 @@
 #include "volumebutton.h"
 #include <QFile>
 #include <QDebug>
+#include <QCheckBox>
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent), volButton(0),
@@ -29,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
   artistTrackLayout = new QVBoxLayout(this);
   subWidgetLayout = new QHBoxLayout(this);
   volButton = new VolumeButton(this);
+  playlistWidget = new PlaylistWidget(this);
 
   searchLine->addAction(QIcon(":/icons/magnifier"), QLineEdit::ActionPosition::TrailingPosition);
   searchLine->setPlaceholderText(tr("Трек, альбом, исполнитель"));
@@ -90,13 +92,31 @@ MainWindow::MainWindow(QWidget *parent) :
   subWidgetLayout->addWidget(volButton);
   ui->widget->setLayout(widgetLayout);
 
+  ui->gridLayout->addWidget(playlistWidget);
+
   QFile file(":/css/styles");
   file.open(QFile::ReadOnly);
   QString StyleSheet = QLatin1String(file.readAll());
   this->setStyleSheet(StyleSheet);
+
+  QObject::connect(searchLine, &QLineEdit::returnPressed, this, &MainWindow::onfillArtistList);
 }
 
 MainWindow::~MainWindow()
 {
   delete ui;
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+  if(event->modifiers().testFlag(Qt::ControlModifier))
+    if(event->key() == Qt::Key_Q)
+      this->close();
+}
+
+void MainWindow::onfillArtistList()
+{
+  playlistWidget->fillArtistlist(searchLine->text());
+//  playlistWidget->fillAlbumlist(searchLine->text());
+//  playlistWidget->fillTracklist(searchLine->text());
 }

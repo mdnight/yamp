@@ -25,3 +25,9 @@ QPushButton {
 QMainWindow{
     background-color: rgba(255,255,255,1);
 }
+
+QTreeWidget::item:selected {
+  border-bottom: 2px solid #ffcc00;
+  border-top: 2px solid #ffcc00;
+  selection-color: black;
+}
